@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>节气中的中国色</title>
+    <title>节气中的中国色 | Colors of Solar Terms</title>
     <style>
         * {
             margin: 0;
@@ -22,11 +22,13 @@
             color: white;
             padding: 15px 0;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
         
         .container {
             width: 1200px;
             margin: 0 auto;
+            max-width: 95%;
         }
         
         .header-content {
@@ -58,6 +60,31 @@
         
         .nav ul li a:hover {
             color: #f8d347;
+        }
+        
+        .language-switch {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+        
+        .lang-btn.active {
+            background: #f8d347;
+            color: #1a3e72;
+            font-weight: bold;
         }
         
         .banner {
@@ -161,6 +188,7 @@
             color: #666;
             margin-bottom: 15px;
             line-height: 1.6;
+            min-height: 60px;
         }
         
         .view-btn {
@@ -171,6 +199,7 @@
             text-decoration: none;
             border-radius: 4px;
             transition: background-color 0.3s;
+            cursor: pointer;
         }
         
         .view-btn:hover {
@@ -306,22 +335,87 @@
         .gallery-images img:hover {
             transform: scale(1.05);
         }
+        
+        /* 多语言控制 */
+        .lang-en {
+            display: none;
+        }
+        
+        .lang-cn {
+            display: block;
+        }
+        
+        body.english .lang-cn {
+            display: none;
+        }
+        
+        body.english .lang-en {
+            display: block;
+        }
+        
+        @media (max-width: 1200px) {
+            .collections {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .collections {
+                grid-template-columns: 1fr;
+            }
+            
+            .detail-content {
+                flex-direction: column;
+            }
+            
+            .banner h1 {
+                font-size: 32px;
+            }
+            
+            .banner p {
+                font-size: 16px;
+                padding: 0 15px;
+            }
+            
+            .gallery-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>  
     <audio id="bgMusic" loop autoplay>
-        <source src="6月10日.MP3" type="audio/mpeg">
+        <source src="USS/6月10日.MP3" type="audio/mpeg">
     </audio>
+    
+    <div class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo lang-cn">节气中的中国色</div>
+                <div class="logo lang-en">Colors of Solar Terms</div>
+                
+            </div>
+        </div>
+        
+        <div class="language-switch">
+            <button class="lang-btn active" data-lang="cn">中文</button>
+            <button class="lang-btn" data-lang="en">English</button>
+        </div>
+    </div>
+    
     <div class="banner">
         <div>
-            <h1>中华文化——节气</h1>
-            <p>二十四节气是中国古代订立的一种用来指导农事的补充历法，被誉为“中国的第五大发明”。</p>
+            <h1 class="lang-cn">中华文化——节气</h1>
+            <h1 class="lang-en">Chinese Culture - Solar Terms</h1>
+            <p class="lang-cn">二十四节气是中国古代订立的一种用来指导农事的补充历法，被誉为"中国的第五大发明"。</p>
+            <p class="lang-en">The 24 solar terms are a supplementary calendar system created in ancient China to guide agricultural activities, known as "China's Fifth Great Invention".</p>
         </div>
     </div>
     
     <div class="container">
         <div class="section-title">
-            <h2>24节气</h2>
+            <h2 class="lang-cn"> 24节气 </h2>
+            <h2 class="lang-en">24 Solar Terms</h2>
         </div>
         
         <div class="collections">
@@ -332,8 +426,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>春木黄（Chunmu yellow）</h3>
-                    <p>The color of the blue sky facing the peach blossom branches.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal1')">查看详情</a>
+                    <p class="lang-cn" data-en="The color of the blue sky facing the peach blossom branches.">桃花枝映蓝天的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal1')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
             
@@ -343,9 +440,12 @@
                     <img src="WechatIMG838.jpg" alt="雨水" onclick="openModal('modal2')">
                 </div>
                 <div class="collection-info">
-                    <h3>雨山青（Yushan cyan）</h3>
-                    <p>The color of water droplets reflecting green trees and the blue sky.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal2')">查看详情</a>
+                    <h3>雨山青（Kushan cyan）</h3>
+                    <p class="lang-cn" data-en="The color of water droplets reflecting green trees and the blue sky.">水滴映着绿树和蓝天的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal2')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
             
@@ -356,8 +456,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>桃华红（Taohua red）</h3>
-                    <p>The color of the blue sky facing the peach blossom branches.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal3')">查看详情</a>
+                    <p class="lang-cn" data-en="The color of the blue sky facing the peach blossom branches.">桃花枝映蓝天的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal3')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
 
@@ -368,8 +471,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>春分蓝（Chunfen blue）</h3>
-                    <p>The color of spring lake water reflecting the blue sky and green grass.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal4')">查看详情</a>
+                    <p class="lang-cn" data-en="The color of spring lake water reflecting the blue sky and green grass.">春湖映蓝天绿草的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal4')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
             
@@ -380,8 +486,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>桐华绿(Tonghua green)</h3>
-                    <p>The color of green grass with dewdrops.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal5')">查看详情</a>
+                    <p class="lang-cn" data-en="The color of green grass with dewdrops.">带露珠的绿草颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal5')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
             
@@ -392,8 +501,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>拂羽紫（Fuyu perple）</h3>
-                    <p>The color of dewdrop-covered daisies in the early morning.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal6')">查看详情</a>
+                    <p class="lang-cn" data-en="The color of dewdrop-covered daisies in the early morning.">清晨带露雏菊的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal6')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
 
@@ -404,8 +516,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>鸣夏黄（Mingxia yellow）</h3>
-                    <p>The colors of lotus flowers reflecting lotus leaves at dusk in early summer.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal7')">查看详情</a>
+                    <p class="lang-cn" data-en="The colors of lotus flowers reflecting lotus leaves at dusk in early summer.">初夏黄昏荷花映荷叶的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal7')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
 
@@ -416,8 +531,11 @@
                 </div>
                 <div class="collection-info">
         	    <h3>小满红(Xiaoman red)</h3>
-       		    <p>he colors of blue bricks, red walls and green tiles when it rains.</p>
-        	    <a href="#" class="view-btn" onclick="openModal('modal8')">查看详情</a>
+       		    <p class="lang-cn" data-en="The colors of blue bricks, red walls and green tiles when it rains.">雨天青砖红墙绿瓦的颜色</p>
+        	    <a href="#" class="view-btn" onclick="openModal('modal8')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
     		</div>
 	    </div>
 
@@ -428,8 +546,11 @@
             	</div>
             	<div class="collection-info">
             	    <h3>知微绿(Zhiwei green)</h3>
-            	    <p>The color when raindrops fall on the tree laden with lychees.</p>
-            	    <a href="#" class="view-btn" onclick="openModal('modal9')">查看详情</a>
+            	    <p class="lang-cn" data-en="The color when raindrops fall on the tree laden with lychees.">雨滴落荔枝树的颜色</p>
+            	    <a href="#" class="view-btn" onclick="openModal('modal9')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
             	</div>
             </div>
             <!-- 节气10 -->
@@ -439,8 +560,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>星云青(Xingyun cyan)</h3>
-                    <p>The color of the sky at dusk in midsummer, just after the sun has set.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal10')">查看详情</a>
+                    <p class="lang-cn" data-en="The color of the sky at dusk in midsummer, just after the sun has set.">盛夏日落后黄昏天空的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal10')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
             
@@ -451,8 +575,11 @@
             	</div>
             	<div class="collection-info">
             	    <h3>霞金紫(Xiajin purple)</h3>
-            	    <p>The color of the sky at dusk in midsummer when the sun hasn't fully set, reflecting purple sunset glow.</p>
-            	    <a href="#" class="view-btn" onclick="openModal('modal11')">查看详情</a>
+            	    <p class="lang-cn" data-en="The color of the sky at dusk in midsummer when the sun hasn't fully set, reflecting purple sunset glow.">盛夏日落前紫霞满天的颜色</p>
+            	    <a href="#" class="view-btn" onclick="openModal('modal11')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
             	</div>
             </div>
 
@@ -463,8 +590,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>萤火黑(Yinhuo black)</h3>
-                    <p>The colors of red algae of varying depths floating on the lake surface.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal12')">查看详情</a>
+                    <p class="lang-cn" data-en="The colors of red algae of varying depths floating on the lake surface.">湖面深浅红藻的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal12')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
 
@@ -475,9 +605,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>蝉鸣绿(Chanming green)</h3>
-                    <p>The colors of autumn forest leaves gradually turning yellow by the river.
-</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal13')">查看详情</a>
+                    <p class="lang-cn" data-en="The colors of autumn forest leaves gradually turning yellow by the river.">河边秋林渐黄的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal13')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
 
@@ -487,9 +619,12 @@
                     <img src="WechatIMG856.jpg" alt="处暑" onclick="openModal('modal14')">
                 </div>
                 <div class="collection-info">
-                    <h3>禾登青(Hedeng cyan)</h3>
-                    <p>The colors of purplish-red flowers blooming in green tree clusters in midsummer.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal14')">查看详情</a>
+                    <h3>禾登青(Heeding cyan)</h3>
+                    <p class="lang-cn" data-en="The colors of purplish-red flowers blooming in green tree clusters in midsummer.">盛夏绿树丛中紫红花的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal14')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
 
@@ -500,8 +635,11 @@
             	</div>
             	<div class="collection-info">
             	    <h3>元鸟白(Yuanniao white)</h3>
-            	    <p>The color of the setting sunlight seen through mature wheat.</p>
-            	    <a href="#" class="view-btn" onclick="openModal('modal15')">查看详情</a>
+            	    <p class="lang-cn" data-en="The color of the setting sunlight seen through mature wheat.">落日透过成熟麦田的颜色</p>
+            	    <a href="#" class="view-btn" onclick="openModal('modal15')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
             	</div>
             </div>
 
@@ -512,8 +650,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>秋分紫(Qiufen purple)</h3>
-                    <p>The color of the blooming Bougainvillea in autumn in China.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal16')">查看详情</a>
+                    <p class="lang-cn" data-en="The color of the blooming Bougainvillea in autumn in China.">中国秋天盛开三角梅的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal16')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
             
@@ -524,8 +665,11 @@
             	</div>
             	<div class="collection-info">
             	    <h3>菊华红(Juhua red)</h3>
-            	    <p>The colors where gullies intersect in Danxia landform.</p>
-            	    <a href="#" class="view-btn" onclick="openModal('modal17')">查看详情</a>
+            	    <p class="lang-cn" data-en="The colors where gullies intersect in Danxia landform.">丹霞地貌沟壑交错的颜色</p>
+            	    <a href="#" class="view-btn" onclick="openModal('modal17')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
             	</div>
             </div>
 
@@ -536,8 +680,11 @@
             	</div>
             	<div class="collection-info">
             	    <h3>秋金蓝(Qiujin blue)</h3>
-            	    <p>The color of withered yellow maple leaves covered in frost after falling.</p>
-            	    <a href="#" class="view-btn" onclick="openModal('modal18')">查看详情</a>
+            	    <p class="lang-cn" data-en="The color of withered yellow maple leaves covered in frost after falling.">霜后凋落枫叶的颜色</p>
+            	    <a href="#" class="view-btn" onclick="openModal('modal18')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
             	</div>
             </div>
 
@@ -548,8 +695,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>松月白(Songyue white)</h3>
-                    <p>The color of pine branches laden with rime ice reflecting the snowy sky.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal19')">查看详情</a>
+                    <p class="lang-cn" data-en="The color of pine branches laden with rime ice reflecting the snowy sky.">雾凇松枝映雪空的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal19')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
 
@@ -560,8 +710,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>飞灵红(Feiling red)</h3>
-                    <p>The color of the water when the sunset passes through the birch forest and shines on the water surface.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal20')">查看详情</a>
+                    <p class="lang-cn" data-en="The color of the water when the sunset passes through the birch forest and shines on the water surface.">夕阳穿桦林映水面的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal20')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
 
@@ -572,8 +725,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>荔挺白(Liting white)</h3>
-                    <p>The color of a birch forest after a heavy snowfall.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal21')">查看详情</a>
+                    <p class="lang-cn" data-en="The color of a birch forest after a heavy snowfall.">大雪后桦树林的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal21')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
 
@@ -584,8 +740,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>冬至青(Dongzhi cyan)</h3>
-                    <p>The color that pine and cypress trees reveal, covered in snow in the deep winter.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal22')">查看详情</a>
+                    <p class="lang-cn" data-en="The color that pine and cypress trees reveal, covered in snow in the deep winter.">深冬雪中松柏显露的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal22')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
 
@@ -596,8 +755,11 @@
                 </div>
                 <div class="collection-info">
                     <h3>雁归蓝(Yangui blu)</h3>
-                    <p>The color of a frozen river on the plain.</p>
-                    <a href="#" class="view-btn" onclick="openModal('modal23')">查看详情</a>
+                    <p class="lang-cn" data-en="The color of a frozen river on the plain.">平原上冰封河流的颜色</p>
+                    <a href="#" class="view-btn" onclick="openModal('modal23')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
                 </div>
             </div>
 
@@ -608,19 +770,22 @@
             	</div>
             	<div class="collection-info">
             	    <h3>水坚黑(Shuijian black)</h3>
-            	    <p>The color of a small hill covered by heavy snow, with a few sparse and bare trees growing on it.</p>
-            	    <a href="#" class="view-btn" onclick="openModal('modal24')">查看详情</a>
+            	    <p class="lang-cn" data-en="The color of a small hill covered by heavy snow, with a few sparse and bare trees growing on it.">大雪覆盖的稀疏小山丘的颜色</p>
+            	    <a href="#" class="view-btn" onclick="openModal('modal24')">
+                        <span class="lang-cn">查看详情</span>
+                        <span class="lang-en">View Details</span>
+                    </a>
             	</div>
             </div>
-            <!-- 空白项保持布局 -->
-            <div class="collection-item" style="visibility: hidden;"></div>
         </div>
     </div>
     
     <footer class="footer">
         <div class="container">
-            <p>四川外国语大学</p>
-            <p>地址：重庆市沙坪坝区壮志路33号</p>
+            <p class="lang-cn">四川外国语大学</p>
+            <p class="lang-en">Sichuan International Studies University</p>
+            <p class="lang-cn">地址：重庆市沙坪坝区壮志路33号</p>
+            <p class="lang-en">Address: No.33, Zhuangzhi Road, Shapingba District, Chongqing</p>
         </div>
     </footer>
     
@@ -630,7 +795,8 @@
             <span class="close-btn" onclick="closeModal('modal1')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>立春</h2>
+                    <h2 class="lang-cn">立春</h2>
+                    <h2 class="lang-en">Beginning of Spring</h2>
                 </div>
 
                 <div class="detail-content">
@@ -638,9 +804,14 @@
                         <img src="WechatIMG833.jpg" alt="立春红">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>立春是二十四节气中的第一个节气，标志着春季的开始。此时气温开始回升，万物复苏，东风解冻，蛰虫始振，鱼陟负冰。在中国，立春有“打春”“咬春”等习俗，如吃春饼、春卷，象征迎接新春。</p>
-                        <p>The Beginning of Spring is the first solar term in the 24 solar terms, marking the start of spring. At this time, temperatures begin to rise, all things recover, the east wind thaws the ice, hibernating insects start to stir, and fish swim up carrying ice. In China, there are customs such as "beating spring" and "biting spring," such as eating spring pancakes and spring rolls, symbolizing the welcome of the new spring.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>立春是二十四节气中的第一个节气，标志着春季的开始。此时气温开始回升，万物复苏，东风解冻，蛰虫始振，鱼陟负冰。在中国，立春有"打春""咬春"等习俗，如吃春饼、春卷，象征迎接新春。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>The Beginning of Spring is the first solar term in the 24 solar terms, marking the start of spring. At this time, temperatures begin to rise, all things recover, the east wind thaws the ice, hibernating insects start to stir, and fish swim up carrying ice. In China, there are customs such as "beating spring" and "biting spring," such as eating spring pancakes and spring rolls, symbolizing the welcome of the new spring.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -653,7 +824,8 @@
             <span class="close-btn" onclick="closeModal('modal2')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>雨水</h2>
+                    <h2 class="lang-cn">雨水</h2>
+                    <h2 class="lang-en">Rain Water</h2>
                 </div>
                 
                 <div class="detail-content">
@@ -661,9 +833,14 @@
                         <img src="WechatIMG836.jpg" alt="雨山青">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>雨水时节，气温回升、冰雪融化、降水增多，故取名为雨水。此时大地开始呈现出欣欣向荣的景象，农民开始为春耕做准备。在中国，雨水有“接寿”的习俗，女婿会给岳父岳母送礼品，表达感恩。</p>
-                        <p>The Rain Water solar term marks the beginning of rainfall, and the amount of rainfall gradually increases. At this time, the temperature rises, ice and snow melt, and precipitation increases, hence the name Rain Water. The Rain Water solar term generally starts from February 18th to 20th in the Gregorian calendar and ends on March 4th or 5th. In ancient China, Rain Water was divided into three pentads: "First, otters offer fish as sacrifice; second, wild geese come; third, plants begin to sprout.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>雨水时节，气温回升、冰雪融化、降水增多，故取名为雨水。此时大地开始呈现出欣欣向荣的景象，农民开始为春耕做准备。在中国，雨水有"接寿"的习俗，女婿会给岳父岳母送礼品，表达感恩。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>The Rain Water solar term marks the beginning of rainfall, and the amount of rainfall gradually increases. At this time, the temperature rises, ice and snow melt, and precipitation increases, hence the name Rain Water. The Rain Water solar term generally starts from February 18th to 20th in the Gregorian calendar and ends on March 4th or 5th. In ancient China, Rain Water was divided into three pentads: "First, otters offer fish as sacrifice; second, wild geese come; third, plants begin to sprout.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -676,7 +853,8 @@
             <span class="close-btn" onclick="closeModal('modal3')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>惊蛰</h2>
+                    <h2 class="lang-cn">惊蛰</h2>
+                    <h2 class="lang-en">Insects Waking</h2>
                 </div>
                 
                 <div class="detail-content">
@@ -684,9 +862,14 @@
                         <img src="WechatIMG840.jpg" alt="桃华红">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>惊蛰反映的是自然生物受节律变化影响而出现萌发生长的现象。春雷始鸣，气温回升，昆虫萌动，“九九”已尽，“九尽桃花开，春耕不能歇”。中国大部分地区进入春耕大忙时节，惊蛰是全年气温回升最快的节气。</p>
-                        <p>Insects Waking: Insects Waking reflects the phenomenon that natural organisms germinate and grow under the influence of rhythmic changes. The spring thunder begins to roar, the temperature rises, insects start to move, and the "Ninety-Nine Days" have ended. "When the ninth nine days end, peach blossoms bloom, and spring plowing cannot stop." Most parts of China enter the busy season of spring plowing, and Insects Waking is the solar term with the fastest temperature rise throughout the year.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>惊蛰反映的是自然生物受节律变化影响而出现萌发生长的现象。春雷始鸣，气温回升，昆虫萌动，"九九"已尽，"九尽桃花开，春耕不能歇"。中国大部分地区进入春耕大忙时节，惊蛰是全年气温回升最快的节气。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Insects Waking reflects the phenomenon that natural organisms germinate and grow under the influence of rhythmic changes. The spring thunder begins to roar, the temperature rises, insects start to move, and the "Ninety-Nine Days" have ended. "When the ninth nine days end, peach blossoms bloom, and spring plowing cannot stop." Most parts of China enter the busy season of spring plowing, and Insects Waking is the solar term with the fastest temperature rise throughout the year.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -699,7 +882,8 @@
             <span class="close-btn" onclick="closeModal('modal4')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>春分</h2>
+                    <h2 class="lang-cn">春分</h2>
+                    <h2 class="lang-en">Vernal Equinox</h2>
                 </div>
                 
                 <div class="detail-content">
@@ -707,9 +891,14 @@
                         <img src="WechatIMG364.jpg" alt="春分蓝">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>春分，这一天太阳直射地球赤道，南北半球昼夜平分，冷热均衡。 春分的意义，一是指一天时间白天黑夜平分，各为12小时；二是春分正当春季三个月之中，平分了春季，自春分之后就进入春和日丽。</p>
-                        <p>The vernal equinox is the day when the sun shines directly on the Earth's equator, and day and night are equally divided in both the Northern and Southern Hemispheres, with balanced temperatures. The significance of the vernal equinox is twofold: first, it means that day and night are equally divided, each lasting 12 hours; second, the vernal equinox falls right in the middle of the three months of spring, dividing the season in half. After the vernal equinox, the weather becomes warm and pleasant.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>春分，这一天太阳直射地球赤道，南北半球昼夜平分，冷热均衡。春分的意义，一是指一天时间白天黑夜平分，各为12小时；二是春分正当春季三个月之中，平分了春季，自春分之后就进入春和日丽。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>The vernal equinox is the day when the sun shines directly on the Earth's equator, and day and night are equally divided in both the Northern and Southern Hemispheres, with balanced temperatures. The significance of the vernal equinox is twofold: first, it means that day and night are equally divided, each lasting 12 hours; second, the vernal equinox falls right in the middle of the three months of spring, dividing the season in half. After the vernal equinox, the weather becomes warm and pleasant.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -722,7 +911,8 @@
             <span class="close-btn" onclick="closeModal('modal5')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>清明</h2>
+                    <h2 class="lang-cn">清明</h2>
+                    <h2 class="lang-en">Pure Brightness</h2>
                 </div>
                 
                 <div class="detail-content">
@@ -730,9 +920,14 @@
                         <img src="WechatIMG363.jpg" alt="桐华绿">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>清明后雨水增多，大地呈现春和景明之象。 气候清爽温暖，草木始发新枝芽，万物开始生长，农民忙于春耕春种。在中国，清明是农历三月节。此时，万物皆清净明洁，故谓之清明。</p>
-                        <p>The Qingming, rainfall increases, and the earth presents a scene of spring warmth and brightness. The climate is refreshing and warm, with plants beginning to sprout new branches and buds, and all things starting to grow. Farmers are busy with spring plowing and sowing. In China, Qingming is a solar term in the third lunar month. At this time, all things are pure and bright, hence the name Qingming.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>清明后雨水增多，大地呈现春和景明之象。气候清爽温暖，草木始发新枝芽，万物开始生长，农民忙于春耕春种。在中国，清明是农历三月节。此时，万物皆清净明洁，故谓之清明。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>During Qingming, rainfall increases, and the earth presents a scene of spring warmth and brightness. The climate is refreshing and warm, with plants beginning to sprout new branches and buds, and all things starting to grow. Farmers are busy with spring plowing and sowing. In China, Qingming is a solar term in the third lunar month. At this time, all things are pure and bright, hence the name Qingming.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -745,7 +940,8 @@
             <span class="close-btn" onclick="closeModal('modal6')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>谷雨</h2>
+                    <h2 class="lang-cn">谷雨</h2>
+                    <h2 class="lang-en">Grain Rain</h2>
                 </div>
 
                 <div class="detail-content">
@@ -753,9 +949,14 @@
                         <img src="WechatIMG843.jpg" alt="拂羽紫">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>谷雨取自“雨生百谷”之意，此时降水明显增加，田中的秧苗初插、作物新种，最需要雨水的滋润，降雨量充足而及时，谷类作物能茁壮成长。谷雨与雨水、小满、小雪、大雪等节气一样，都是反映降水现象的节气，是古代农耕文化对于节令的反映。</p>
-                        <p>Grain Rain: Grain Rain is taken from the meaning of "rain gives birth to hundreds of grains". At this time, precipitation increases significantly. The seedlings in the fields are newly planted, and the new crops need the moisture of rain the most. The rainfall is sufficient and timely, and the grain crops can grow healthily. Like the solar terms of Rain Water, Grain Full, Minor Snow, and Major Snow, Grain Rain is a solar term that reflects precipitation phenomena, and it is a reflection of ancient farming culture on seasons.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>谷雨取自"雨生百谷"之意，此时降水明显增加，田中的秧苗初插、作物新种，最需要雨水的滋润，降雨量充足而及时，谷类作物能茁壮成长。谷雨与雨水、小满、小雪、大雪等节气一样，都是反映降水现象的节气，是古代农耕文化对于节令的反映。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Grain Rain is taken from the meaning of "rain gives birth to hundreds of grains". At this time, precipitation increases significantly. The seedlings in the fields are newly planted, and the new crops need the moisture of rain the most. The rainfall is sufficient and timely, and the grain crops can grow healthily. Like the solar terms of Rain Water, Grain Full, Minor Snow, and Major Snow, Grain Rain is a solar term that reflects precipitation phenomena, and it is a reflection of ancient farming culture on seasons.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -768,7 +969,8 @@
             <span class="close-btn" onclick="closeModal('modal7')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>立夏</h2>
+                    <h2 class="lang-cn">立夏</h2>
+                    <h2 class="lang-en">Beginning of Summer</h2>
                 </div>
                 
                 <div class="detail-content">
@@ -776,9 +978,14 @@
                         <img src="WechatIMG846.jpg" alt="鸣夏黄">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>立夏是标示万物进入旺季生长的一个重要节气。立夏后，日照增加，逐渐升温，雷雨增多，农作物进入了茁壮成长阶段。立夏表示告别春天，是夏天的开始。人们习惯上都把立夏看作是温度明显升高，炎暑将临，雷雨增多，农作物进入旺季生长的一个重要节气。</p>
-                        <p>Beginning of Summer: The Beginning of Summer is an important solar term that marks the entry of all things into the peak growth season. After the Beginning of Summer, sunshine increases, temperature gradually rises, thunderstorms increase, and crops enter the stage of vigorous growth. The Beginning of Summer means saying goodbye to spring and the beginning of summer. People are accustomed to regarding the Beginning of Summer as an important solar term when the temperature rises significantly, the heat is approaching, thunderstorms increase, and crops enter the peak growth season.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>立夏是标示万物进入旺季生长的一个重要节气。立夏后，日照增加，逐渐升温，雷雨增多，农作物进入了茁壮成长阶段。立夏表示告别春天，是夏天的开始。人们习惯上都把立夏看作是温度明显升高，炎暑将临，雷雨增多，农作物进入旺季生长的一个重要节气。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Beginning of Summer: The Beginning of Summer is an important solar term that marks the entry of all things into the peak growth season. After the Beginning of Summer, sunshine increases, temperature gradually rises, thunderstorms increase, and crops enter the stage of vigorous growth. The Beginning of Summer means saying goodbye to spring and the beginning of summer. People are accustomed to regarding the Beginning of Summer as an important solar term when the temperature rises significantly, the heat is approaching, thunderstorms increase, and crops enter the peak growth season.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -791,7 +998,8 @@
             <span class="close-btn" onclick="closeModal('modal8')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>小满</h2>
+                    <h2 class="lang-cn">小满</h2>
+                    <h2 class="lang-en">Grain Full</h2>
                 </div>
 
                 <div class="detail-content">
@@ -799,9 +1007,14 @@
                         <img src="WechatIMG818.jpg" alt="小满绿">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>小满反映了降雨量大的气候特征：“小满江河满”（南方）。另有解释是指北方麦类等夏熟作物的籽粒开始灌浆，只是小满，还未完全饱满。小满节气期间，中国南方地区一般会降雨多、雨量大；来自南方海洋的暖湿气流活跃，与从北方南下的冷空气在华南一带交汇，这时华南地区往往会出现持续大范围的强降水。</p>
-                        <p>Grain Full: Grain Full reflects the climatic feature of heavy rainfall: "Grain Full, rivers full" (in the south). Another explanation is that the grains of summer-ripening crops such as wheat in the north begin to fill, but they are only full, not completely full. During the Grain Full solar term, the southern region of China generally has a lot of rainfall and heavy rainfall; the warm and humid air from the southern ocean is active and meets the cold air moving south from the north in the south China region, when the south China region often has continuous large-scale heavy rainfall.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>小满反映了降雨量大的气候特征："小满江河满"（南方）。另有解释是指北方麦类等夏熟作物的籽粒开始灌浆，只是小满，还未完全饱满。小满节气期间，中国南方地区一般会降雨多、雨量大；来自南方海洋的暖湿气流活跃，与从北方南下的冷空气在华南一带交汇，这时华南地区往往会出现持续大范围的强降水。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Grain Full: Grain Full reflects the climatic feature of heavy rainfall: "Grain Full, rivers full" (in the south). Another explanation is that the grains of summer-ripening crops such as wheat in the north begin to fill, but they are only full, not completely full. During the Grain Full solar term, the southern region of China generally has a lot of rainfall and heavy rainfall; the warm and humid air from the southern ocean is active and meets the cold air moving south from the north in the south China region, when the south China region often has continuous large-scale heavy rainfall.</p>
+                        </div>
                     </div>
 		</div>
             </div>
@@ -814,7 +1027,8 @@
             <span class="close-btn" onclick="closeModal('modal9')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>芒种</h2>
+                    <h2 class="lang-cn">芒种</h2>
+                    <h2 class="lang-en">Grain in Ear</h2>
                 </div>
 
                 <div class="detail-content">
@@ -822,9 +1036,14 @@
                         <img src="WechatIMG821.jpg" alt="芒种金">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>芒种，是“有芒之谷类作物可种”的意思。这个时节气温显著升高、雨量充沛、空气湿度大，适宜晚稻等谷类作物种植。农事耕种以“芒种”这节气为界，过此之后种植成活率就越来越低。它是古代农耕文化对于节令的反映。芒种节气在农耕上有着相当重要的意义，它是古代农耕社会中决定收成的关键节气。</p>
-                        <p>Grain in Ear: Grain in Ear means "grains with awns can be planted". At this time, the temperature rises significantly, the rainfall is abundant, and the air humidity is high, which is suitable for planting谷类 crops such as late rice. Farming is bounded by the Grain in Ear solar term, and the survival rate of planting after this is getting lower and lower. It is a reflection of ancient farming culture on seasons. The Grain in Ear solar term is of considerable significance in farming, and it is a key solar term that determines the harvest in ancient farming society.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>芒种，是"有芒之谷类作物可种"的意思。这个时节气温显著升高、雨量充沛、空气湿度大，适宜晚稻等谷类作物种植。农事耕种以"芒种"这节气为界，过此之后种植成活率就越来越低。它是古代农耕文化对于节令的反映。芒种节气在农耕上有着相当重要的意义，它是古代农耕社会中决定收成的关键节气。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Grain in Ear: Grain in Ear means "grains with awns can be planted". At this time, the temperature rises significantly, the rainfall is abundant, and the air humidity is high, which is suitable for planting谷类 crops such as late rice. Farming is bounded by the Grain in Ear solar term, and the survival rate of planting after this is getting lower and lower. It is a reflection of ancient farming culture on seasons. The Grain in Ear solar term is of considerable significance in farming, and it is a key solar term that determines the harvest in ancient farming society.</p>
+                        </div>
                     </div>
 		</div>
             </div>
@@ -837,7 +1056,8 @@
             <span class="close-btn" onclick="closeModal('modal10')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>夏至</h2>       
+                    <h2 class="lang-cn">夏至</h2>
+                    <h2 class="lang-en">Summer Solstice</h2>       
                 </div>
                 
                 <div class="detail-content">
@@ -845,9 +1065,14 @@
                         <img src="WechatIMG362.jpg" alt="星云青">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>夏为大，至为极，万物到此壮大繁茂到极点。夏至太阳直射地面的位置到达一年的最北端，几乎直射北回归线，因此，夏至是北半球是一年中夜最短、昼最长的一天。这期间中国大部分地区气温较高，日照充足，作物生长很快，此时的降水对农业产量影响很大。</p>
-                        <p>The Xiazhi："Summer" signifies greatness, and "solstice" means the extreme. At this time, all things reach their peak in growth and prosperity. On the summer solstice, the position where the sun shines directly on the ground reaches the northernmost point of the year, almost directly hitting the Tropic of Cancer. Therefore, the summer solstice is the day with the shortest night and the longest day in the Northern Hemisphere. During this period, most parts of China have high temperatures and ample sunshine, and crops grow rapidly. The precipitation at this time has a significant impact on agricultural output.</p>                       
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>夏为大，至为极，万物到此壮大繁茂到极点。夏至太阳直射地面的位置到达一年的最北端，几乎直射北回归线，因此，夏至是北半球是一年中夜最短、昼最长的一天。这期间中国大部分地区气温较高，日照充足，作物生长很快，此时的降水对农业产量影响很大。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>The Xiazhi："Summer" signifies greatness, and "solstice" means the extreme. At this time, all things reach their peak in growth and prosperity. On the summer solstice, the position where the sun shines directly on the ground reaches the northernmost point of the year, almost directly hitting the Tropic of Cancer. Therefore, the summer solstice is the day with the shortest night and the longest day in the Northern Hemisphere. During this period, most parts of China have high temperatures and ample sunshine, and crops grow rapidly. The precipitation at this time has a significant impact on agricultural output.</p>                       
+                        </div>
                     </div>
                 </div>
             </div>
@@ -860,7 +1085,8 @@
             <span class="close-btn" onclick="closeModal('modal11')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>小暑</h2>       
+                    <h2 class="lang-cn">小暑</h2>
+                    <h2 class="lang-en">Slight Heat</h2>       
                 </div>
                 
                 <div class="detail-content">
@@ -868,9 +1094,14 @@
                         <img src="WechatIMG849.jpg" alt="霞金紫">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>小暑虽不是一年中最炎热的时节，但紧接着就是一年中最热的节气大暑，民间有“小暑大暑，上蒸下煮”之说。中国多地自小暑起进入雷暴最多的时节。小暑开始进入伏天，天气变化无常。此时中国南方地区雷暴频繁，而华北、东北地区进入多雨季节，热带气旋活动频繁，登陆中国的热带气旋开始增多。</p>
-                        <p>Slight Heat: Although Slight Heat is not the hottest season of the year, it is followed by Great Heat, the hottest solar term of the year. There is a saying in the folk that "Slight Heat and Great Heat, steaming from above and boiling from below". Many places in China enter the season with the most thunderstorms since Slight Heat. Slight Heat begins to enter the dog days, and the weather is changeable. At this time, thunderstorms are frequent in the southern region of China, while the north China and northeast China regions enter the rainy season, tropical cyclones are active, and the number of tropical cyclones landing in China begins to increase.</p>                       
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>小暑虽不是一年中最炎热的时节，但紧接着就是一年中最热的节气大暑，民间有"小暑大暑，上蒸下煮"之说。中国多地自小暑起进入雷暴最多的时节。小暑开始进入伏天，天气变化无常。此时中国南方地区雷暴频繁，而华北、东北地区进入多雨季节，热带气旋活动频繁，登陆中国的热带气旋开始增多。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Slight Heat: Although Slight Heat is not the hottest season of the year, it is followed by Great Heat, the hottest solar term of the year. There is a saying in the folk that "Slight Heat and Great Heat, steaming from above and boiling from below". Many places in China enter the season with the most thunderstorms since Slight Heat. Slight Heat begins to enter the dog days, and the weather is changeable. At this time, thunderstorms are frequent in the southern region of China, while the north China and northeast China regions enter the rainy season, tropical cyclones are active, and the number of tropical cyclones landing in China begins to increase.</p>                       
+                        </div>
                     </div>
                 </div>
             </div>
@@ -883,7 +1114,8 @@
             <span class="close-btn" onclick="closeModal('modal12')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>大暑</h2>
+                    <h2 class="lang-cn">大暑</h2>
+                    <h2 class="lang-en">Great Heat</h2>
                 </div>
                 
                 <div class="detail-content">
@@ -891,9 +1123,14 @@
                         <img src="WechatIMG851.jpg" alt="萤火黑">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>大暑是一年中阳光最猛烈、气温最高的节气，“湿热交蒸”在此时到达顶点。大暑气候特征：高温酷热，雷暴、台风频繁。大暑节气正值“三伏天”里的“中伏”前后，是一年中最热的时段。自古以来，民间有大暑三伏天饮凉茶（伏茶）的习俗；伏茶顾名思义，是三伏天饮的茶，这种由中草药煮成的茶水有清凉祛暑的作用。</p>
-                        <p>Great Heat: Great Heat is the solar term with the strongest sunshine and the highest temperature in a year, and the "hot and humid steaming" reaches its peak at this time. Climate characteristics of Great Heat: high temperature and heat, frequent thunderstorms and typhoons. The Great Heat solar term is around the "Middle伏" in the "Three伏Days", which is the hottest period of the year. Since ancient times, there has been a folk custom of drinking herbal tea (Fu Tea) during the Great Heat and Three伏Days; as the name suggests, Fu Tea is the tea drunk during the Three伏Days, and this tea boiled from Chinese herbal medicines has the effect of cooling and relieving summer heat.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>大暑是一年中阳光最猛烈、气温最高的节气，"湿热交蒸"在此时到达顶点。大暑气候特征：高温酷热，雷暴、台风频繁。大暑节气正值"三伏天"里的"中伏"前后，是一年中最热的时段。自古以来，民间有大暑三伏天饮凉茶（伏茶）的习俗；伏茶顾名思义，是三伏天饮的茶，这种由中草药煮成的茶水有清凉祛暑的作用。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Great Heat: Great Heat is the solar term with the strongest sunshine and the highest temperature in a year, and the "hot and humid steaming" reaches its peak at this time. Climate characteristics of Great Heat: high temperature and heat, frequent thunderstorms and typhoons. The Great Heat solar term is around the "Middle伏" in the "Three伏Days", which is the hottest period of the year. Since ancient times, there has been a folk custom of drinking herbal tea (Fu Tea) during the Great Heat and Three伏Days; as the name suggests, Fu Tea is the tea drunk during the Three伏Days, and this tea boiled from Chinese herbal medicines has the effect of cooling and relieving summer heat.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -906,7 +1143,8 @@
             <span class="close-btn" onclick="closeModal('modal13')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>立秋</h2>
+                    <h2 class="lang-cn">立秋</h2>
+                    <h2 class="lang-en">Beginning of Autumn</h2>
                 </div>
                 
                 <div class="detail-content">
@@ -914,9 +1152,14 @@
                         <img src="WechatIMG853.jpg" alt="蝉鸣绿">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>大暑是一年中阳光最猛烈、气温最高的节气，“湿热交蒸”在此时到达顶点。大暑气候特征：高温酷热，雷暴、台风频繁。大暑节气正值“三伏天”里的“中伏”前后，是一年中最热的时段。自古以来，民间有大暑三伏天饮凉茶（伏茶）的习俗；伏茶顾名思义，是三伏天饮的茶，这种由中草药煮成的茶水有清凉祛暑的作用。</p>
-                        <p>The Beginning of Autumn: As the first solar term in autumn, it marks the official start of the early autumn season. At this time, the summer heat fades and coolness arrives, and sycamore leaves fall, giving rise to the folk saying "falling leaves signal autumn." Although the daytime still has summer heat, the temperature difference between morning and evening gradually becomes obvious, and farmers begin to prepare for the management of autumn harvest crops.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>大暑是一年中阳光最猛烈、气温最高的节气，"湿热交蒸"在此时到达顶点。大暑气候特征：高温酷热，雷暴、台风频繁。大暑节气正值"三伏天"里的"中伏"前后，是一年中最热的时段。自古以来，民间有大暑三伏天饮凉茶（伏茶）的习俗；伏茶顾名思义，是三伏天饮的茶，这种由中草药煮成的茶水有清凉祛暑的作用。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>The Beginning of Autumn: As the first solar term in autumn, it marks the official start of the early autumn season. At this time, the summer heat fades and coolness arrives, and sycamore leaves fall, giving rise to the folk saying "falling leaves signal autumn." Although the daytime still has summer heat, the temperature difference between morning and evening gradually becomes obvious, and farmers begin to prepare for the management of autumn harvest crops.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -929,7 +1172,8 @@
             <span class="close-btn" onclick="closeModal('modal14')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>处暑</h2>
+                    <h2 class="lang-cn">处暑</h2>
+                    <h2 class="lang-en">End of Heat</h2>
                 </div>
                 
                 <div class="detail-content">
@@ -937,9 +1181,14 @@
                         <img src="WechatIMG855.jpg" alt="萤火黑">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>处暑即为“出暑”，是炎热离开的意思，标志着暑气渐消，天气转凉。此时昼夜温差增大，降水减少，秋高气爽。民间有“放河灯”“开渔节”的习俗，祈福平安、庆祝丰收。</p>
-                        <p>End of Heat: It means "leaving the heat," indicating the departure of heat and the cooling of the weather. At this time, the temperature difference between day and night increases, precipitation decreases, and the autumn sky is clear and refreshing. There are folk customs of "releasing river lanterns" and "fishing festival" to pray for peace and celebrate the harvest.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>处暑即为"出暑"，是炎热离开的意思，标志着暑气渐消，天气转凉。此时昼夜温差增大，降水减少，秋高气爽。民间有"放河灯""开渔节"的习俗，祈福平安、庆祝丰收。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>End of Heat: It means "leaving the heat," indicating the departure of heat and the cooling of the weather. At this time, the temperature difference between day and night increases, precipitation decreases, and the autumn sky is clear and refreshing. There are folk customs of "releasing river lanterns" and "fishing festival" to pray for peace and celebrate the harvest.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -952,7 +1201,8 @@
             <span class="close-btn" onclick="closeModal('modal15')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>白露</h2>
+                    <h2 class="lang-cn">白露</h2>
+                    <h2 class="lang-en">White Dew</h2>
                 </div>
                 
                 <div class="detail-content">
@@ -960,9 +1210,14 @@
                         <img src="WechatIMG825.jpg" alt="元鸟黄">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>白露是反映自然界寒气增长的重要节气，此时昼夜温差大，水汽凝结成露，故名“白露”。天气逐渐转凉，需注意保暖。民间有“收清露”“喝白露茶”的习俗，认为此时的露水有养生功效。</p>
-                        <p>The temperature drops significantly, with a large temperature difference between day and night. The water vapor in the air condenses into white dew in the morning. At this time, autumn is getting stronger. There are folk customs of "collecting clear dew" and drinking White Dew tea. It is believed that dew has medicinal value, and tea has the effect of removing dryness.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>白露是反映自然界寒气增长的重要节气，此时昼夜温差大，水汽凝结成露，故名"白露"。天气逐渐转凉，需注意保暖。民间有"收清露""喝白露茶"的习俗，认为此时的露水有养生功效。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>The temperature drops significantly, with a large temperature difference between day and night. The water vapor in the air condenses into white dew in the morning. At this time, autumn is getting stronger. There are folk customs of "collecting clear dew" and drinking White Dew tea. It is believed that dew has medicinal value, and tea has the effect of removing dryness.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -975,7 +1230,8 @@
             <span class="close-btn" onclick="closeModal('modal16')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>秋分</h2>
+                    <h2 class="lang-cn">秋分</h2>
+                    <h2 class="lang-en">Autumnal Equinox</h2>
                 </div>
                 
                 <div class="detail-content">
@@ -983,9 +1239,14 @@
                         <img src="WechatIMG368.jpg" alt="秋分紫">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>秋分：“分”即为“平分”、“半”的意思，秋分当日太阳直射赤道，全球各地昼夜等长。秋分之后，北半球各地昼短夜长，南半球各地昼长夜短。在中国，秋分之后，暑热已消，天气转凉，暑凉相分，在这一天，中国民间有祭月、吃秋菜等风俗。</p>
-                        <p>The Qiufen: The word "equinox" means "equal division" or "half." On the day of the autumnal equinox, the sun shines directly on the equator, and day and night are of equal length all over the world. After the autumnal equinox, in the Northern Hemisphere, the days become shorter and the nights longer, while in the Southern Hemisphere, the days become longer and the nights shorter. In China, after the autumnal equinox, the summer heat has dissipated, the weather turns cool, and the transition from heat to coolness is marked. On this day, there are folk customs in China such as moon worship and eating autumn vegetables.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>秋分："分"即为"平分"、"半"的意思，秋分当日太阳直射赤道，全球各地昼夜等长。秋分之后，北半球各地昼短夜长，南半球各地昼长夜短。在中国，秋分之后，暑热已消，天气转凉，暑凉相分，在这一天，中国民间有祭月、吃秋菜等风俗。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>The Qiufen: The word "equinox" means "equal division" or "half." On the day of the autumnal equinox, the sun shines directly on the equator, and day and night are of equal length all over the world. After the autumnal equinox, in the Northern Hemisphere, the days become shorter and the nights longer, while in the Southern Hemisphere, the days become longer and the nights shorter. In China, after the autumnal equinox, the summer heat has dissipated, the weather turns cool, and the transition from heat to coolness is marked. On this day, there are folk customs in China such as moon worship and eating autumn vegetables.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -998,7 +1259,8 @@
             <span class="close-btn" onclick="closeModal('modal17')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>寒露</h2>
+                    <h2 class="lang-cn">寒露</h2>
+                    <h2 class="lang-en">Cold Dew</h2>
                 </div>
                 <div class="detail-content">
                     <div class="detail-img">
@@ -1006,9 +1268,14 @@
                     </div>
 
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>寒露，露水已寒，即将凝结成霜，是气候从凉爽到寒冷的过渡。此时北方已呈深秋景象，白云红叶，偶见早霜；南方也进入秋季，需抓紧播种油菜、蚕豆等作物。</p>
-                        <p>Hanlu: The dew has become cold and is about to condense into frost, marking the transition from cool to cold weather. At this time, the north presents a late autumn scene with white clouds and red leaves, and early frost can occasionally be seen; the south also enters autumn, and it is necessary to sow crops such as rapeseed and broad beans in time.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>寒露，露水已寒，即将凝结成霜，是气候从凉爽到寒冷的过渡。此时北方已呈深秋景象，白云红叶，偶见早霜；南方也进入秋季，需抓紧播种油菜、蚕豆等作物。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Hanlu: The dew has become cold and is about to condense into frost, marking the transition from cool to cold weather. At this time, the north presents a late autumn scene with white clouds and red leaves, and early frost can occasionally be seen; the south also enters autumn, and it is necessary to sow crops such as rapeseed and broad beans in time.</p>
+                        </div>
                     </div>
 		</div>
             </div>
@@ -1021,7 +1288,8 @@
             <span class="close-btn" onclick="closeModal('modal18')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>霜降</h2>
+                    <h2 class="lang-cn">霜降</h2>
+                    <h2 class="lang-en">Frost's Descent</h2>
                 </div>
                 <div class="detail-content">
                     <div class="detail-img">
@@ -1029,9 +1297,14 @@
                     </div>
 
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>霜降是秋季的最后一个节气，意味着天气渐冷、初霜出现。此时昼夜温差增大，空气中的水汽在地表或植物上凝结成霜，大地呈现出萧瑟的秋末景象。霜降后，北方大部分地区气温降至0℃以下，南方也开始进入深秋。</p>
-                        <p>The Frost's Descent: As the last solar term of autumn, it indicates the weather is getting colder and the first frost appears. The temperature difference between day and night increases, and water vapor in the air condenses into frost on the ground or plants, presenting a bleak late autumn scene. After Frost's Descent, the temperature in most northern regions drops below 0℃, and the south also enters late autumn.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>霜降是秋季的最后一个节气，意味着天气渐冷、初霜出现。此时昼夜温差增大，空气中的水汽在地表或植物上凝结成霜，大地呈现出萧瑟的秋末景象。霜降后，北方大部分地区气温降至0℃以下，南方也开始进入深秋。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>The Frost's Descent: As the last solar term of autumn, it indicates the weather is getting colder and the first frost appears. The temperature difference between day and night increases, and water vapor in the air condenses into frost on the ground or plants, presenting a bleak late autumn scene. After Frost's Descent, the temperature in most northern regions drops below 0℃, and the south also enters late autumn.</p>
+                        </div>
                     </div>
 		</div>
             </div>
@@ -1044,7 +1317,8 @@
             <span class="close-btn" onclick="closeModal('modal19')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>立冬</h2>
+                    <h2 class="lang-cn">立冬</h2>
+                    <h2 class="lang-en">Beginning of Winter</h2>
                 </div>
                 <div class="detail-content">
                     <div class="detail-img">
@@ -1052,9 +1326,14 @@
                     </div>
 
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>立冬为冬季的开始，意味着万物进入休养、收藏状态。此时太阳直射点继续南移，北半球获得的太阳辐射量减少，气温逐渐下降。中国民间有“立冬补冬”的习俗，通过食用肉类、滋补食材来抵御严寒，如北方吃饺子、南方吃汤圆或鸡鸭。</p>
-                        <p>The Beginning of Winter: As the start of winter, it means all things enter a state of rest and storage. The sun's direct point continues to move south, reducing solar radiation in the Northern Hemisphere, and temperatures gradually drop. There is a folk custom of "tonifying winter" on the Beginning of Winter, where people eat meat and nourishing ingredients to resist the cold, such as dumplings in the north and tangyuan or poultry in the south.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>立冬为冬季的开始，意味着万物进入休养、收藏状态。此时太阳直射点继续南移，北半球获得的太阳辐射量减少，气温逐渐下降。中国民间有"立冬补冬"的习俗，通过食用肉类、滋补食材来抵御严寒，如北方吃饺子、南方吃汤圆或鸡鸭。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>The Beginning of Winter: As the start of winter, it means all things enter a state of rest and storage. The sun's direct point continues to move south, reducing solar radiation in the Northern Hemisphere, and temperatures gradually drop. There is a folk custom of "tonifying winter" on the Beginning of Winter, where people eat meat and nourishing ingredients to resist the cold, such as dumplings in the north and tangyuan or poultry in the south.</p>
+                        </div>
                     </div>
 		</div>
             </div>
@@ -1067,7 +1346,8 @@
             <span class="close-btn" onclick="closeModal('modal20')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>小雪</h2>
+                    <h2 class="lang-cn">小雪</h2>
+                    <h2 class="lang-en">Light Snow</h2>
                 </div>
                 <div class="detail-content">
                     <div class="detail-img">
@@ -1075,9 +1355,14 @@
                     </div>
 
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>小雪标志着冬季降雪的开始，但此时雪量较小，地面尚未形成积雪。气候逐渐寒冷干燥，北方开始出现初雪，南方则以阴雨为主。民间有“小雪腌菜”的传统，人们会腌制腊肉、香肠等腊味，为冬季储存食物，同时也有喝红薯粥、吃糍粑的习俗。</p>
-                        <p>Light Snow: It marks the beginning of winter snowfall, but the snowfall is small, and no snow accumulates on the ground. The climate becomes cold and dry, with the first snow in the north and mainly rainy weather in the south. There is a tradition of "pickling vegetables in Light Snow," where people pickle cured meat, sausages, and other preserved foods to store for winter. There are also customs of drinking sweet potato porridge and eating ciba (glutinous rice cake).</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>小雪标志着冬季降雪的开始，但此时雪量较小，地面尚未形成积雪。气候逐渐寒冷干燥，北方开始出现初雪，南方则以阴雨为主。民间有"小雪腌菜"的传统，人们会腌制腊肉、香肠等腊味，为冬季储存食物，同时也有喝红薯粥、吃糍粑的习俗。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Light Snow: It marks the beginning of winter snowfall, but the snowfall is small, and no snow accumulates on the ground. The climate becomes cold and dry, with the first snow in the north and mainly rainy weather in the south. There is a tradition of "pickling vegetables in Light Snow," where people pickle cured meat, sausages, and other preserved foods to store for winter. There are also customs of drinking sweet potato porridge and eating ciba (glutinous rice cake).</p>
+                        </div>
                     </div>
 		</div>
             </div>
@@ -1090,7 +1375,8 @@
             <span class="close-btn" onclick="closeModal('modal21')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>大雪</h2>
+                    <h2 class="lang-cn">大雪</h2>
+                    <h2 class="lang-en">Heavy Snow</h2>
                 </div>
                 <div class="detail-content">
                     <div class="detail-img">
@@ -1098,9 +1384,14 @@
                     </div>
 
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>大雪时节，降雪量增多，地面可能出现积雪，天气更加寒冷。此时太阳高度角最小，光照时间短，中国大部分地区进入隆冬。大雪节气是“进补”的好时节，素有“冬天进补，开春打虎”的说法，人们常食用羊肉、红枣、桂圆等温热食物，以增强体质、抵御严寒。</p>
-                        <p>Heavy Snow: Snowfall increases, snow may accumulate on the ground, and the weather becomes colder. The sun's altitude is the smallest, and daylight hours are short, with most of China entering midwinter. Heavy Snow is an ideal time for "tonifying the body," as the saying goes, "Tonify in winter, and you can fight a tiger in spring." People often eat warm foods like mutton, red dates, and longan to enhance physical fitness and resist the cold.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>大雪时节，降雪量增多，地面可能出现积雪，天气更加寒冷。此时太阳高度角最小，光照时间短，中国大部分地区进入隆冬。大雪节气是"进补"的好时节，素有"冬天进补，开春打虎"的说法，人们常食用羊肉、红枣、桂圆等温热食物，以增强体质、抵御严寒。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Heavy Snow: Snowfall increases, snow may accumulate on the ground, and the weather becomes colder. The sun's altitude is the smallest, and daylight hours are short, with most of China entering midwinter. Heavy Snow is an ideal time for "tonifying the body," as the saying goes, "Tonify in winter, and you can fight a tiger in spring." People often eat warm foods like mutton, red dates, and longan to enhance physical fitness and resist the cold.</p>
+                        </div>
                     </div>
 		</div>
             </div>
@@ -1113,7 +1404,8 @@
             <span class="close-btn" onclick="closeModal('modal22')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>冬至</h2>
+                    <h2 class="lang-cn">冬至</h2>
+                    <h2 class="lang-en">Winter Solstice</h2>
                 </div>
                 
                 <div class="detail-content">
@@ -1121,9 +1413,14 @@
                         <img src="WechatIMG360.jpg" alt="冬至青">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>冬至：“至”是极致的意思，太阳直射地面的位置到达一年的最南端，几乎直射南回归线，这一天北半球的白昼最短，黑夜最长。它既是二十四节气中一个重要的节气，也是中国民间的传统节日。在中国北方地区，每年冬至日有吃饺子的习俗。</p>
-                        <p>The Winter Solstice: The word "solstice" means "the extreme." On this day, the position where the sun shines directly on the ground reaches the southernmost point of the year, almost directly hitting the Tropic of Capricorn. This is the day when the Northern Hemisphere experiences the shortest day and the longest night. It is not only an important solar term in the traditional Chinese calendar but also a traditional festival in Chinese folk culture. In northern China, there is a custom of eating dumplings on the winter solstice every year.</p>    
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>冬至："至"是极致的意思，太阳直射地面的位置到达一年的最南端，几乎直射南回归线，这一天北半球的白昼最短，黑夜最长。它既是二十四节气中一个重要的节气，也是中国民间的传统节日。在中国北方地区，每年冬至日有吃饺子的习俗。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>The Winter Solstice: The word "solstice" means "the extreme." On this day, the position where the sun shines directly on the ground reaches the southernmost point of the year, almost directly hitting the Tropic of Capricorn. This is the day when the Northern Hemisphere experiences the shortest day and the longest night. It is not only an important solar term in the traditional Chinese calendar but also a traditional festival in Chinese folk culture. In northern China, there is a custom of eating dumplings on the winter solstice every year.</p>    
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1136,7 +1433,8 @@
             <span class="close-btn" onclick="closeModal('modal23')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>小寒</h2>
+                    <h2 class="lang-cn">小寒</h2>
+                    <h2 class="lang-en">Slight Cold</h2>
                 </div>
                 
                 <div class="detail-content">
@@ -1144,9 +1442,14 @@
                         <img src="WechatIMG865.jpg" alt="雁归蓝">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>小寒是冬季的第五个节气，标志着一年中最寒冷的时期开始。此时冷气积久而寒，但尚未达到极致，故称为“小寒”。中国大部分地区气温降至全年最低，北方有“三九四九，冰上走”的俗语，南方则有腌制腊味、喝腊八粥的习俗，为迎接春节做准备。</p>
-                        <p>Slight Cold: As the fifth solar term of winter, it marks the beginning of the coldest period of the year. At this time, the cold air accumulates, but it has not yet reached its extreme, hence the name "Slight Cold." Temperatures in most parts of China drop to the annual minimum. In the north, there is a saying, "The third and fourth nine-day periods, walking on ice," while in the south, there are customs of pickling preserved foods and drinking Laba porridge to prepare for the Spring Festival.</p>    
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>小寒是冬季的第五个节气，标志着一年中最寒冷的时期开始。此时冷气积久而寒，但尚未达到极致，故称为"小寒"。中国大部分地区气温降至全年最低，北方有"三九四九，冰上走"的俗语，南方则有腌制腊味、喝腊八粥的习俗，为迎接春节做准备。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Slight Cold: As the fifth solar term of winter, it marks the beginning of the coldest period of the year. At this time, the cold air accumulates, but it has not yet reached its extreme, hence the name "Slight Cold." Temperatures in most parts of China drop to the annual minimum. In the north, there is a saying, "The third and fourth nine-day periods, walking on ice," while in the south, there are customs of pickling preserved foods and drinking Laba porridge to prepare for the Spring Festival.</p>    
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1159,7 +1462,8 @@
             <span class="close-btn" onclick="closeModal('modal24')">&times;</span>
             <div class="collection-detail">
                 <div class="detail-header">
-                    <h2>大寒</h2>
+                    <h2 class="lang-cn">大寒</h2>
+                    <h2 class="lang-en">Great Cold</h2>
                 </div>
 
                 <div class="detail-content">
@@ -1167,15 +1471,51 @@
                         <img src="WechatIMG830.jpg" alt="水坚黑">
                     </div>
                     <div class="detail-text">
-                        <h3>节气介绍</h3>
-                        <p>大寒，二十四节气中的最后一个节气，是一年中最冷的时期。此时寒潮南下频繁，风力较大，地面积雪不化，呈现出冰天雪地的严寒景象。大寒过后，又将迎来新一年的节气轮回。</p>
-                        <p>Dahan: The last solar term in the twenty-four solar terms, it is the coldest period of the year. At this time, cold waves frequently move south, the wind is strong, and the snow on the ground does not melt, presenting a severe cold scene of ice and snow. After Dahan, a new cycle of solar terms will usher in.</p>
+                        <h3 class="lang-cn">节气介绍</h3>
+                        <h3 class="lang-en">Solar Term Introduction</h3>
+                        <div class="lang-cn">
+                            <p>大寒，二十四节气中的最后一个节气，是一年中最冷的时期。此时寒潮南下频繁，风力较大，地面积雪不化，呈现出冰天雪地的严寒景象。大寒过后，又将迎来新一年的节气轮回。</p>
+                        </div>
+                        <div class="lang-en">
+                            <p>Dahan: The last solar term in the twenty-four solar terms, it is the coldest period of the year. At this time, cold waves frequently move south, the wind is strong, and the snow on the ground does not melt, presenting a severe cold scene of ice and snow. After Dahan, a new cycle of solar terms will usher in.</p>
+                        </div>
                     </div>
 		</div>
             </div>
         </div>
     </div>
+    
     <script>
+        // 语言切换功能
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const body = document.body;
+        
+        // 初始化语言设置
+        let currentLang = localStorage.getItem('lang') || 'cn';
+        if (currentLang === 'en') {
+            body.classList.add('english');
+            document.querySelector('.lang-btn[data-lang="en"]').classList.add('active');
+            document.querySelector('.lang-btn[data-lang="cn"]').classList.remove('active');
+        }
+        
+        // 添加语言切换事件
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                if (lang === 'en') {
+                    body.classList.add('english');
+                    localStorage.setItem('lang', 'en');
+                } else {
+                    body.classList.remove('english');
+                    localStorage.setItem('lang', 'cn');
+                }
+                
+                // 更新按钮状态
+                langBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+        
         // 打开模态框
         function openModal(modalId) {
             document.getElementById(modalId).style.display = "block";
@@ -1198,23 +1538,22 @@
                 }
             }
         }
-    </script>
-    <script>
+        
         // 音频播放控制脚本
         document.addEventListener('DOMContentLoaded', function() {
             const music = document.getElementById('bgMusic');
             
-            // 处理浏览器自动播放限制（现代浏览器可能需要用户交互后才能播放）
+            // 处理浏览器自动播放限制
             document.addEventListener('click', function handleFirstClick() {
                 if (music.paused) {
                     music.play().catch(error => {
-                        console.log('自动播放失败，点击播放按钮:', error);
+                        console.log('自动播放失败:', error);
                     });
                     document.removeEventListener('click', handleFirstClick);
                 }
             });
             
-            // 音量控制（可选）
+            // 音量控制
             music.volume = 0.3; // 设置初始音量为30%
         });
     </script>
