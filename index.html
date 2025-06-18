@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>节气中的中国色 | Colors of Solar Terms</title>
     <style>
+        /* 之前的样式保持不变 */
         * {
             margin: 0;
             padding: 0;
@@ -353,9 +354,160 @@
             display: block;
         }
         
+        /* 新增视频区域样式 */
+        .video-section {
+            background: linear-gradient(135deg, #1a3e72 0%, #2c5a99 100%);
+            padding: 60px 0;
+            margin: 40px 0;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+        
+        .video-preview {
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            background: url('https://images.unsplash.com/photo-1609947013079-7a5d06b6c4e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .video-overlay:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .play-btn {
+            width: 80px;
+            height: 80px;
+            background: rgba(248, 211, 71, 0.9);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .play-btn:hover {
+            transform: scale(1.1);
+            background: rgba(248, 211, 71, 1);
+        }
+        
+        .play-btn::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 15px 0 15px 26px;
+            border-color: transparent transparent transparent #1a3e72;
+            margin-left: 8px;
+        }
+        
+        .video-title {
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 15px;
+        }
+        
+        .video-desc {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .video-player {
+            width: 100%;
+            height: 500px;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .video-info {
+            margin-top: 25px;
+            color: white;
+            text-align: center;
+        }
+        
+        .video-info h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .video-info p {
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* 视频控制按钮 */
+        .video-controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .control-btn {
+            background: rgba(248, 211, 71, 0.8);
+            color: #1a3e72;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .control-btn:hover {
+            background: rgba(248, 211, 71, 1);
+            transform: translateY(-3px);
+        }
+        
+        .control-btn i {
+            font-size: 18px;
+        }
+        
         @media (max-width: 1200px) {
             .collections {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .video-preview,
+            .video-player {
+                height: 400px;
             }
         }
         
@@ -380,8 +532,42 @@
             .gallery-images {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .video-preview,
+            .video-player {
+                height: 300px;
+            }
+            
+            .video-title {
+                font-size: 24px;
+            }
+            
+            .video-desc {
+                font-size: 16px;
+            }
+            
+            .play-btn {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .video-preview,
+            .video-player {
+                height: 250px;
+            }
+            
+            .video-title {
+                font-size: 20px;
+            }
+            
+            .video-desc {
+                font-size: 14px;
+            }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>  
     <audio id="bgMusic" loop autoplay>
@@ -414,10 +600,9 @@
     
     <div class="container">
         <div class="section-title">
-            <h2 class="lang-cn">24节气</h2>
+            <h2 class="lang-cn"> 24节气 </h2>
             <h2 class="lang-en">24 Solar Terms</h2>
         </div>
-    </div>
         
         <div class="collections">
             <!-- 节气1 -->
@@ -707,7 +892,7 @@
 	    <!-- 节气20 -->
             <div class="collection-item">
                 <div class="collection-img">
-                    <img src="WechatIMG862.jpg" alt="小雪" onclick="openModal('modal20')">
+                    <img src="USS/WechatIMG862.jpg" alt="小雪" onclick="openModal('modal20')">
                 </div>
                 <div class="collection-info">
                     <h3>飞灵红(Feiling red)</h3>
@@ -777,6 +962,47 @@
                         <span class="lang-en">View Details</span>
                     </a>
             	</div>
+            </div>
+        </div>
+    </div>
+        
+        <!-- 新增的视频区域 -->
+        <div class="video-section">
+            <div class="video-container">
+                <div class="video-preview" id="videoPreview">
+                    <div class="video-overlay" id="videoOverlay">
+                        <div class="play-btn" id="playButton"></div>
+                        <div class="video-title lang-cn">探索24节气的奥秘</div>
+                        <div class="video-title lang-en">Explore the Mystery of 24 Solar Terms</div>
+                        <div class="video-desc lang-cn">点击播放按钮，了解中国节气文化的深厚底蕴</div>
+                        <div class="video-desc lang-en">Click the play button to learn about the profound heritage of Chinese solar term culture</div>
+                    </div>
+                </div>
+                
+                <video class="video-player" id="solarVideo" controls>
+                    <source src="24节气视频.mp4" type="video/mp4">
+
+                </video>
+                
+                <div class="video-info">
+                    <h3 class="lang-cn">节气与文化</h3>
+                    <h3 class="lang-en">Solar Terms and Culture</h3>
+                    <p class="lang-cn">二十四节气是中国古代农耕文明的产物，它准确地反映了自然节律变化，在人们日常生活中发挥了极为重要的作用。本视频将带您领略节气的文化内涵及其在现代生活中的应用。</p>
+                    <p class="lang-en">The 24 solar terms are the product of ancient Chinese farming civilization. They accurately reflect the changes in natural rhythms and play an extremely important role in people's daily lives. This video will take you to appreciate the cultural connotations of solar terms and their applications in modern life.</p>
+                    
+                    <div class="video-controls">
+                        <button class="control-btn" id="replayBtn">
+                            <i class="fas fa-redo"></i>
+                            <span class="lang-cn">重新播放</span>
+                            <span class="lang-en">Replay</span>
+                        </button>
+                        <button class="control-btn" id="fullscreenBtn">
+                            <i class="fas fa-expand"></i>
+                            <span class="lang-cn">全屏观看</span>
+                            <span class="lang-en">Fullscreen</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1556,6 +1782,74 @@
             
             // 音量控制
             music.volume = 0.3; // 设置初始音量为30%
+        });
+        
+        // 新增视频控制功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('solarVideo');
+            const videoPreview = document.getElementById('videoPreview');
+            const videoOverlay = document.getElementById('videoOverlay');
+            const playButton = document.getElementById('playButton');
+            const replayBtn = document.getElementById('replayBtn');
+            const fullscreenBtn = document.getElementById('fullscreenBtn');
+            
+            // 点击播放按钮播放视频
+            playButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                playVideo();
+            });
+            
+            // 点击视频预览区域播放视频
+            videoOverlay.addEventListener('click', function() {
+                playVideo();
+            });
+            
+            // 播放视频函数
+            function playVideo() {
+                videoPreview.style.display = 'none';
+                video.style.display = 'block';
+                video.play();
+                
+                // 暂停背景音乐
+                const bgMusic = document.getElementById('bgMusic');
+                bgMusic.pause();
+            }
+            
+            // 重新播放按钮
+            replayBtn.addEventListener('click', function() {
+                video.currentTime = 0;
+                video.play();
+            });
+            
+            // 全屏按钮
+            fullscreenBtn.addEventListener('click', function() {
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.mozRequestFullScreen) {
+                    video.mozRequestFullScreen();
+                } else if (video.webkitRequestFullscreen) {
+                    video.webkitRequestFullscreen();
+                } else if (video.msRequestFullscreen) {
+                    video.msRequestFullscreen();
+                }
+            });
+            
+            // 视频结束时显示预览图
+            video.addEventListener('ended', function() {
+                video.style.display = 'none';
+                videoPreview.style.display = 'block';
+                
+                // 恢复背景音乐
+                const bgMusic = document.getElementById('bgMusic');
+                bgMusic.play();
+            });
+            
+            // ESC键退出全屏时暂停视频
+            document.addEventListener('fullscreenchange', function() {
+                if (!document.fullscreenElement) {
+                    video.pause();
+                }
+            });
         });
     </script>
 </body>
